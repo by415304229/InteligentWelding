@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Office.Interop.Excel;
+using System.Drawing;
+using System.Windows.Forms;
+using OfficeOpenXml;
+using System.IO;
 
 namespace InteligentWelding
 {
@@ -18,23 +21,20 @@ namespace InteligentWelding
         /// <returns></returns>
         public static Girders GetGirdersFromExcel(string filePath)
         {
-            Application excelApp = new Application();
-            //if (null == excelApp)
-            //{
-            //    throw (new Exception("读取Excel失败!"));
-            //}
-            Workbooks wbks = excelApp.Workbooks;
-            Workbook _wb = wbks.Add(filePath);
-            //大梁参数页
-            Worksheet _wsGirder = _wb.Sheets[0];
-            //隔板参数页
-            Worksheet _wsBulkhead = _wb.Sheets[1];
+
             //大梁参数模型
             Girders girders = new Girders();
+            // 读取
+            byte[] bin = System.IO.File.ReadAllBytes(filePath);
+            byte[] outStream;
+            using (MemoryStream stream = new MemoryStream(bin))
+            using (ExcelPackage excelPackage = new ExcelPackage(stream))
+            {
+                ExcelWorksheet sheet = excelPackage.Workbook.Worksheets[1];
+                
+            }
 
-            girders.bulkheadCount = _wsGirder.Cells[1, 1];
-
-            return girders;
+                return girders;
         }
         /// <summary>
         /// 将大梁参数另存为新的文件

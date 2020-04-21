@@ -11,66 +11,137 @@ namespace InteligentWelding.Entity
     /// </summary>
     class Bulkhead
     {
-        public Bulkhead()
+        public Bulkhead(string type)
         {
 
         }
         /// <summary>
-        /// 隔板编号
+        /// 隔板高度
         /// </summary>
-        public int serialNo;
+        public double H1;
         /// <summary>
-        /// 隔板上表面到下表面高度(h)
+        /// 隔板宽度
+
         /// </summary>
-        public int h;
+        public double W1;
         /// <summary>
-        /// T型钢到隔板上表面高度(h1)
+        /// 隔板R孔1
+
         /// </summary>
-        public int h1;
+        public double R1;
         /// <summary>
-        /// 隔板上表面到下表面高度(h11)	
+        /// 隔板R孔2
+
         /// </summary>
-        public int h11;
+        public double R2;
         /// <summary>
-        /// T型钢到隔板下表面高度(h2)	
+        /// 隔板R孔3
+
         /// </summary>
-        public int h2;
+        public double R3;
         /// <summary>
-        /// T型钢到隔板上表面高度(h22)	
+        /// 隔板R孔4
+
         /// </summary>
-        public int h22;
+        public double R4;
         /// <summary>
-        /// 隔板上宽度(w1)	
+        /// 隔板R孔5
+
         /// </summary>
-        public int w1;
+        public double R5;
         /// <summary>
-        /// 隔板下宽度(w2)	
+        /// 隔板R孔6
+
         /// </summary>
-        public int w2;
+        public double R6;
         /// <summary>
-        /// 底板角钢到斜腹板距离(L1)	
+        /// 隔板焊接高度
+
         /// </summary>
-        public int L1;
+        public double H2;
         /// <summary>
-        /// 底板角钢到直腹板距离(L2)	
+        /// 隔板焊接宽度1
+
         /// </summary>
-        public int L2;
+        public double L1;
         /// <summary>
-        /// 隔板厚度(d)	
+        /// 隔板焊接宽度2
+
         /// </summary>
-        public int d;
+        public double L2;
         /// <summary>
-        /// 阿尔法角度(α)	
+        /// 隔板焊接宽度3
+
         /// </summary>
-        public int alpha;
+        public double L3;
         /// <summary>
-        /// 工位号(h3)	
+        /// 隔板未焊接高度
+
         /// </summary>
-        public int h3;
+        public double G1;
+        /// <summary>
+        /// 隔板未焊接高度
+
+        /// </summary>
+        public double G2;
+        /// <summary>
+        /// 加强板总高度
+
+        /// </summary>
+        public double H3;
+        /// <summary>
+        /// 加强板总宽度
+
+        /// </summary>
+        public double W3;
+        /// <summary>
+        /// 加强板R孔1
+
+        /// </summary>
+        public double R7;
+        /// <summary>
+        /// 加强板R孔2
+
+        /// </summary>
+        public double R8;
+        /// <summary>
+        /// 加强板R孔3
+
+        /// </summary>
+        public double R9;
+        /// <summary>
+        /// 加强板R孔4
+
+        /// </summary>
+        public double R10;
+        /// <summary>
+        /// 加强板焊接高度1
+
+        /// </summary>
+        public double H4;
+        /// <summary>
+        /// 加强板焊接高度2
+
+        /// </summary>
+        public double H5;
+        /// <summary>
+        /// 加强板焊接高度3
+
+        /// </summary>
+        public double H6;
+        /// <summary>
+        /// 隔板厚度
+        /// </summary>
+        public double T1;
+        /// <summary>
+        /// 加强板厚度
+        /// </summary>
+        public double T2;
+
 
         /// <summary>
-        /// 焊缝信息
+        /// 焊缝信息 key:焊缝编号，value:焊缝信息
         /// </summary>
-        public List<Bead> beads;
+        public Dictionary<int, Bead> Beads;
     }
 }

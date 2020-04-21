@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace InteligentWelding.Entity
 {
     /// <summary>
-    /// 焊缝
+    /// 焊缝(AB型通用)
     /// </summary>
     class Bead
     {

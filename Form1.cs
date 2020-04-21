@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Microsoft.Office;
-using Microsoft.Office.Interop.Excel;
 
 namespace InteligentWelding
 {
@@ -20,9 +18,17 @@ namespace InteligentWelding
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void Import_Click(object sender, EventArgs e)
         {
-            ExcelAccess.GetGirdersFromExcel()
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "请选择项目文件";
+            dialog.Filter = "所有文件(*xls*)|*.xls*";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string file = dialog.FileName;//返回文件的完整路径
+                //ExcelAccess.GetGirdersFromExcel(file);
+            }
         }
     }
 }
