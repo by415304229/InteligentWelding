@@ -30,8 +30,8 @@ namespace InteligentWelding
             using (MemoryStream stream = new MemoryStream(bin))
             using (ExcelPackage excelPackage = new ExcelPackage(stream))
             {
-                ExcelWorksheet sheet = excelPackage.Workbook.Worksheets[1];
-                
+                ExcelWorksheet sheetGirders = excelPackage.Workbook.Worksheets[0];
+                ExcelWorksheet sheetBulkhead = excelPackage.Workbook.Worksheets[1];
             }
 
                 return girders;
@@ -45,6 +45,8 @@ namespace InteligentWelding
         /// <returns></returns>
         public static bool SaveGirdersAsNewFile(string filePath, Girders girders)
         {
+            string templeteA = System.AppDomain.CurrentDomain.BaseDirectory + @"Templete/导入模板（A型）.xlsx";
+            string templeteB = System.AppDomain.CurrentDomain.BaseDirectory + @"Templete/导入模板（B型）.xlsx";
             return true;
         }
     }

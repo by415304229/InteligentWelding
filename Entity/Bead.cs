@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,31 +10,38 @@ namespace InteligentWelding.Entity
     /// <summary>
     /// 焊缝(AB型通用)
     /// </summary>
-    class Bead
+    public class Bead : INotifyPropertyChanged
     {
+        /// <summary>
+        /// 焊缝编号
+        /// </summary>
+        public int BeadNo;
         /// <summary>
         /// 隔板内焊接顺序
         /// </summary>
-        public int serialNo;
+        public int SerialNo;
         /// <summary>
         /// 是否焊接
         /// </summary>
-        public bool isWeld;
+        public bool IsWeld;
         /// <summary>
         /// JOB号
         /// </summary>
-        public int jobNo;
+        public int JobNo;
         /// <summary>
-        /// 焊接位置
+        /// 设置变化的属性
         /// </summary>
-        public string position;
+        /// <param name="propertyName"></param>
+        private void SendChangeInfo(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         /// <summary>
-        /// 焊接模式
+        /// 属性变化的事件
         /// </summary>
-        public string mode;
-        /// <summary>
-        /// 焊脚尺寸
-        /// </summary>
-        public string size;
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

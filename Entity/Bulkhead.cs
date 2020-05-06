@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,139 +10,154 @@ namespace InteligentWelding.Entity
     /// <summary>
     /// 隔板参数
     /// </summary>
-    class Bulkhead
+    public class Bulkhead: INotifyPropertyChanged
     {
         public Bulkhead(string type)
         {
 
         }
+        private int _bulkheadNo;
+        private double _bulkheadSpace;
+        private bool _isWelding;
+        private bool _isSection1;
+        private bool _isSection2;
+        private bool _isSection3;
+        private int _robot;
+        private List<Bead> _beads;
         /// <summary>
-        /// 隔板高度
+        /// 隔板编号
         /// </summary>
-        public double H1;
+        public int BulkHeadNo
+        {
+            get
+            {
+                return _bulkheadNo;
+            }
+            set
+            {
+                _bulkheadNo = value;
+                this.SendChangeInfo("BulkHeadNo");
+            }
+        }
         /// <summary>
-        /// 隔板宽度
-
+        /// 隔板间距
         /// </summary>
-        public double W1;
+        public double BulkheadSpace
+        {
+            get
+            {
+                return _bulkheadSpace;
+            }
+            set
+            {
+                _bulkheadSpace = value;
+                this.SendChangeInfo("BulkheadSpace");
+            }
+        }
         /// <summary>
-        /// 隔板R孔1
-
+        /// 是否焊接
         /// </summary>
-        public double R1;
+        public bool IsWelding
+        {
+            get
+            {
+                return _isWelding;
+            }
+            set
+            {
+                _isWelding = value;
+                this.SendChangeInfo("IsWelding");
+            }
+        }
         /// <summary>
-        /// 隔板R孔2
-
+        /// 区域1是否进入
         /// </summary>
-        public double R2;
+        public bool IsSection1
+        {
+            get
+            {
+                return _isSection1;
+            }
+            set
+            {
+                _isSection1 = value;
+                this.SendChangeInfo("IsSection1");
+            }
+        }
         /// <summary>
-        /// 隔板R孔3
-
+        /// 区域2是否进入
         /// </summary>
-        public double R3;
+        public bool IsSection2
+        {
+            get
+            {
+                return _isSection2;
+            }
+            set
+            {
+                _isSection2 = value;
+                this.SendChangeInfo("IsSection2");
+            }
+        }
         /// <summary>
-        /// 隔板R孔4
-
+        /// 区域3是否进入
         /// </summary>
-        public double R4;
+        public bool IsSection3
+        {
+            get
+            {
+                return _isSection3;
+            }
+            set
+            {
+                _isSection3 = value;
+                this.SendChangeInfo("IsSection3");
+            }
+        }
         /// <summary>
-        /// 隔板R孔5
-
+        /// 机器人选择
         /// </summary>
-        public double R5;
-        /// <summary>
-        /// 隔板R孔6
-
-        /// </summary>
-        public double R6;
-        /// <summary>
-        /// 隔板焊接高度
-
-        /// </summary>
-        public double H2;
-        /// <summary>
-        /// 隔板焊接宽度1
-
-        /// </summary>
-        public double L1;
-        /// <summary>
-        /// 隔板焊接宽度2
-
-        /// </summary>
-        public double L2;
-        /// <summary>
-        /// 隔板焊接宽度3
-
-        /// </summary>
-        public double L3;
-        /// <summary>
-        /// 隔板未焊接高度
-
-        /// </summary>
-        public double G1;
-        /// <summary>
-        /// 隔板未焊接高度
-
-        /// </summary>
-        public double G2;
-        /// <summary>
-        /// 加强板总高度
-
-        /// </summary>
-        public double H3;
-        /// <summary>
-        /// 加强板总宽度
-
-        /// </summary>
-        public double W3;
-        /// <summary>
-        /// 加强板R孔1
-
-        /// </summary>
-        public double R7;
-        /// <summary>
-        /// 加强板R孔2
-
-        /// </summary>
-        public double R8;
-        /// <summary>
-        /// 加强板R孔3
-
-        /// </summary>
-        public double R9;
-        /// <summary>
-        /// 加强板R孔4
-
-        /// </summary>
-        public double R10;
-        /// <summary>
-        /// 加强板焊接高度1
-
-        /// </summary>
-        public double H4;
-        /// <summary>
-        /// 加强板焊接高度2
-
-        /// </summary>
-        public double H5;
-        /// <summary>
-        /// 加强板焊接高度3
-
-        /// </summary>
-        public double H6;
-        /// <summary>
-        /// 隔板厚度
-        /// </summary>
-        public double T1;
-        /// <summary>
-        /// 加强板厚度
-        /// </summary>
-        public double T2;
-
-
+        public int Robot
+        {
+            get
+            {
+                return _robot;
+            }
+            set
+            {
+                _robot = value;
+                this.SendChangeInfo("Robot");
+            }
+        }
         /// <summary>
         /// 焊缝信息 key:焊缝编号，value:焊缝信息
         /// </summary>
-        public Dictionary<int, Bead> Beads;
+        public List<Bead> Beads
+        {
+            get
+            {
+                return _beads;
+            }
+            set
+            {
+                _beads = value;
+                this.SendChangeInfo("Beads");
+            }
+        }
+        /// <summary>
+        /// 设置变化的属性
+        /// </summary>
+        /// <param name="propertyName"></param>
+        private void SendChangeInfo(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        /// <summary>
+        /// 属性变化的事件
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
