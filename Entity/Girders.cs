@@ -18,15 +18,27 @@ namespace InteligentWelding.Entity
         /// </summary>
         public Girders()
         {
+            BulkheadCount = 0;
+            Type = "";
+            Name = "";
+            WorkNo = "";
+            WireType = "";
+            Picture = Properties.Resources._default;
+            BulkheadsLeftA = new List<BulkheadA>();
+            BulkheadsRightA = new List<BulkheadA>();
+            BulkheadParaA = new BulkheadParaA();
+            BulkheadParaB = new BulkheadParaB();
         }
         private int _bulkheadCount;
         private string _type;
         private string _name;
         private string _workNo;
         private string _wireType;
-        private Bitmap _picture;
-        private Dictionary<int, Bulkhead> _bulkheadsLeft;
-        private Dictionary<int, Bulkhead> _bulkheadsRight;
+        private Image _picture;
+        private List<BulkheadA> _bulkheadsLeftA;
+        private List<BulkheadA> _bulkheadsRightA;
+        private List<BulkheadB> _bulkheadsLeftB;
+        private List<BulkheadB> _bulkheadsRightB;
         private BulkheadParaA _bulkheadParaA;
         private BulkheadParaB _bulkheadParaB;
 
@@ -110,7 +122,7 @@ namespace InteligentWelding.Entity
         /// <summary>
         /// 图片
         /// </summary>
-        public Bitmap Picture
+        public Image Picture
         {
             get
             {
@@ -125,31 +137,61 @@ namespace InteligentWelding.Entity
         /// <summary>
         /// key:焊接顺序-隔板参数(A,B) 左侧机器人
         /// </summary>
-        public Dictionary<int, Bulkhead> BulkheadsLeft
+        public List<BulkheadA> BulkheadsLeftA
         {
             get
             {
-                return _bulkheadsLeft;
+                return _bulkheadsLeftA;
             }
             set
             {
-                _bulkheadsLeft = value;
-                this.SendChangeInfo("BulkheadsLeft");
+                _bulkheadsLeftA = value;
+                this.SendChangeInfo("BulkheadsLeftA");
             }
         }
         /// <summary>
         /// key:焊接顺序-隔板参数(A,B) 右侧机器人
         /// </summary>
-        public Dictionary<int, Bulkhead> BulkheadsRight
+        public List<BulkheadA> BulkheadsRightA
         {
             get
             {
-                return _bulkheadsRight;
+                return _bulkheadsRightA;
             }
             set
             {
-                _bulkheadsRight = value;
-                this.SendChangeInfo("BulkheadsRight");
+                _bulkheadsRightA = value;
+                this.SendChangeInfo("BulkheadsRightA");
+            }
+        }
+        /// <summary>
+        /// key:焊接顺序-隔板参数(A,B) 左侧机器人
+        /// </summary>
+        public List<BulkheadB> BulkheadsLeftB
+        {
+            get
+            {
+                return _bulkheadsLeftB;
+            }
+            set
+            {
+                _bulkheadsLeftB = value;
+                this.SendChangeInfo("BulkheadsLeftB");
+            }
+        }
+        /// <summary>
+        /// key:焊接顺序-隔板参数(A,B) 右侧机器人
+        /// </summary>
+        public List<BulkheadB> BulkheadsRightB
+        {
+            get
+            {
+                return _bulkheadsRightB;
+            }
+            set
+            {
+                _bulkheadsRightB = value;
+                this.SendChangeInfo("BulkheadsRightB");
             }
         }
         /// <summary>

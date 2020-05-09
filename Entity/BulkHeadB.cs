@@ -10,18 +10,23 @@ namespace InteligentWelding.Entity
     /// <summary>
     /// 隔板参数
     /// </summary>
-    public class Bulkhead: INotifyPropertyChanged
+    public class BulkheadB : INotifyPropertyChanged
     {
-        public Bulkhead(string type)
+        public BulkheadB()
         {
-
+            Beads = new List<Bead>();
+            for (int i = 0; i < 40; i++)
+            {
+                Beads.Add(new Bead()
+                {
+                    BeadNo = i + 1
+                });
+            }
         }
         private int _bulkheadNo;
+        private int _serialNo;
         private double _bulkheadSpace;
         private bool _isWelding;
-        private bool _isSection1;
-        private bool _isSection2;
-        private bool _isSection3;
         private int _robot;
         private List<Bead> _beads;
         /// <summary>
@@ -37,6 +42,18 @@ namespace InteligentWelding.Entity
             {
                 _bulkheadNo = value;
                 this.SendChangeInfo("BulkHeadNo");
+            }
+        }
+        public int SerialNo
+        {
+            get
+            {
+                return _serialNo;
+            }
+            set
+            {
+                _serialNo = value;
+                this.SendChangeInfo("SerialNo");
             }
         }
         /// <summary>
@@ -67,51 +84,6 @@ namespace InteligentWelding.Entity
             {
                 _isWelding = value;
                 this.SendChangeInfo("IsWelding");
-            }
-        }
-        /// <summary>
-        /// 区域1是否进入
-        /// </summary>
-        public bool IsSection1
-        {
-            get
-            {
-                return _isSection1;
-            }
-            set
-            {
-                _isSection1 = value;
-                this.SendChangeInfo("IsSection1");
-            }
-        }
-        /// <summary>
-        /// 区域2是否进入
-        /// </summary>
-        public bool IsSection2
-        {
-            get
-            {
-                return _isSection2;
-            }
-            set
-            {
-                _isSection2 = value;
-                this.SendChangeInfo("IsSection2");
-            }
-        }
-        /// <summary>
-        /// 区域3是否进入
-        /// </summary>
-        public bool IsSection3
-        {
-            get
-            {
-                return _isSection3;
-            }
-            set
-            {
-                _isSection3 = value;
-                this.SendChangeInfo("IsSection3");
             }
         }
         /// <summary>

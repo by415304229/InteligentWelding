@@ -73,7 +73,7 @@ namespace InteligentWelding.Entity
         public double L1 {
             get
             {
-                return this.L1;
+                return this._l1;
             }
             set
             {
