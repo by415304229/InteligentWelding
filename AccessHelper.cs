@@ -12,7 +12,7 @@ namespace InteligentWelding
     class AccessHelper
     {
         //数据库连接字符串
-        public static readonly string str = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        public static readonly string str = System.Configuration.ConfigurationManager.ConnectionStrings["WeldingDBConnectionString"].ConnectionString;
         // 用于缓存参数的HASH表
         private static Hashtable parmCache = Hashtable.Synchronized(new Hashtable());
         /// <summary>
@@ -114,11 +114,11 @@ namespace InteligentWelding
         /// <param name="cmdText">存储过程名称或者sql命令语句</param>
         /// <param name="commandParameters">执行命令所用参数的集合</param>
         /// <returns>包含结果的数据集</returns>
-        public static DataSet ExecuteDataSet(string connectionString, string cmdText, params OleDbParameter[] commandParameters)
+        public static DataSet ExecuteDataSet(string cmdText, params OleDbParameter[] commandParameters)
         {
             //创建一个SqlCommand对象，并对其进行初始化
             OleDbCommand cmd = new OleDbCommand();
-            using (OleDbConnection conn = new OleDbConnection(connectionString))
+            using (OleDbConnection conn = new OleDbConnection(str))
             {
                 PrepareCommand(cmd, conn, null, cmdText, commandParameters);
                 //创建SqlDataAdapter对象以及DataSet
@@ -152,10 +152,10 @@ namespace InteligentWelding
         /// <param name="commandText">存储过程名称或者sql命令语句</param>
         /// <param name="commandParameters">执行命令所用参数的集合</param>
         /// <returns>用 Convert.To{Type}把类型转换为想要的 </returns>
-        public static object ExecuteScalar(string connectionString, string cmdText, params OleDbParameter[] commandParameters)
+        public static object ExecuteScalar(string cmdText, params OleDbParameter[] commandParameters)
         {
             OleDbCommand cmd = new OleDbCommand();
-            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            using (OleDbConnection connection = new OleDbConnection(str))
             {
                 PrepareCommand(cmd, connection, null, cmdText, commandParameters);
                 object val = cmd.ExecuteScalar();

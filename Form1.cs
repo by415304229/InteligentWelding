@@ -9,17 +9,64 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using InteligentWelding.Entity;
+using Opc.Da;
 
 namespace InteligentWelding
 {
     public partial class Form1 : Form
     {
+        OPCMonitor monitor = new OPCMonitor();
+        PLCPara PLCPara = new PLCPara();
+        UpperPara upperPara = new UpperPara();
         public Girders Entity;
         public BindingSource bindingLeft = new BindingSource();
         public BindingSource bindingRight = new BindingSource();
+        bool isRequest = false;
+        bool isReady = false;
+
         public Form1()
         {
             InitializeComponent();
+        }
+        public void ShowBeads()
+        {
+            this.tableLayoutPanel1.Controls.Add(this.label33, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label34, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label35, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label36, 0, 3);
+            //编号
+            for (int i = 0; i < 40; i++)
+            {
+                Label lb1 = new Label();
+                lb1.Text = (i + 1).ToString();
+                lb1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                tableLayoutPanel1.Controls.Add(lb1);
+            }
+            //是否焊接
+            for (int i = 0; i < 40; i++)
+            {
+                CheckBox cb = new CheckBox();
+                cb.Name = "cbIsWelding" + (i + 1).ToString();
+                cb.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                tableLayoutPanel1.Controls.Add(cb);
+            }
+            //焊接顺序
+            for (int i = 0; i < 40; i++)
+            {
+                TextBox tb = new TextBox();
+                tb.Name = "txtSerialNo" + (i + 1).ToString();
+                tb.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                tableLayoutPanel1.Controls.Add(tb);
+            }
+            //JOB号
+            for (int i = 0; i < 40; i++)
+            {
+                TextBox tb = new TextBox();
+                tb.Name = "txtJobNo" + (i + 1).ToString();
+                tb.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                tableLayoutPanel1.Controls.Add(tb);
+            }
+
         }
         //根据A,B模板类型加载隔板参数
         private void ShowBulkheads(string type)
@@ -71,119 +118,60 @@ namespace InteligentWelding
             dgvRight.DataSource = bindingRight;
         }
         /// <summary>
-        /// 动态生成焊缝信息
+        /// 动态绑定焊缝信息
         /// </summary>
         private void ShowBeadsA(int bulkNo, int rowNo, Robot robot)
         {
-            tableLayoutPanel1.Controls.Clear();
-            this.tableLayoutPanel1.Controls.Add(this.label33, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label34, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label35, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label36, 0, 3);
             int serialNo = rowNo;
-            //编号
-            for (int i = 0; i < 40; i++)
-            {
-                Label lb1 = new Label();
-                lb1.Text = (i + 1).ToString();
-                lb1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                tableLayoutPanel1.Controls.Add(lb1);
-            }
             //是否焊接
             for (int i = 0; i < 40; i++)
             {
-                CheckBox cb = new CheckBox();
-                cb.Name = "cbIsWelding" + (i + 1).ToString();
-                cb.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                CheckBox cb = tableLayoutPanel1.GetControlFromPosition(i+ 1, 1) as CheckBox;
+                TextBox tb = tableLayoutPanel1.GetControlFromPosition(i + 1, 2) as TextBox;
+                TextBox tb2 = tableLayoutPanel1.GetControlFromPosition(i+ 1, 3) as TextBox;
+                cb.DataBindings.Clear();
+                tb.DataBindings.Clear();
+                tb2.DataBindings.Clear();
                 //非初始化加载时进行数据绑定
-                if(bulkNo > 0)
+                if (bulkNo > 0)
                 {
                     //数据绑定
                     if (robot == Robot.Left)
                     {
                         cb.Checked = Entity.BulkheadsLeftA[serialNo].Beads[i].IsWeld;
                         cb.DataBindings.Add("Checked", Entity.BulkheadsLeftA[serialNo].Beads[i], "IsWeld");
+                        tb.Text = Entity.BulkheadsLeftA[serialNo].Beads[i].SerialNo.ToString();
+                        tb.DataBindings.Add("Text", Entity.BulkheadsLeftA[serialNo].Beads[i], "SerialNo");
+                        tb2.Text = Entity.BulkheadsLeftA[serialNo].Beads[i].JobNo.ToString();
+                        tb2.DataBindings.Add("Text", Entity.BulkheadsLeftA[serialNo].Beads[i], "JobNo");
                     }
                     else
                     {
                         cb.Checked = Entity.BulkheadsRightA[serialNo].Beads[i].IsWeld;
                         cb.DataBindings.Add("Checked", Entity.BulkheadsRightA[serialNo].Beads[i], "IsWeld");
-                    }
-                }
-                tableLayoutPanel1.Controls.Add(cb);
-            }
-            //焊接顺序
-            for (int i = 0; i < 40; i++)
-            {
-                TextBox tb = new TextBox();
-                tb.Name = "txtSerialNo" + (i + 1).ToString();
-                tb.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                //非初始化加载时进行数据绑定
-                if (bulkNo > 0)
-                {
-                    //数据绑定
-                    if (robot == Robot.Left)
-                    {
-                        tb.Text = Entity.BulkheadsLeftA[serialNo].Beads[i].SerialNo.ToString();
-                        tb.DataBindings.Add("Text", Entity.BulkheadsLeftA[serialNo].Beads[i], "SerialNo");
-                    }
-                    else
-                    {
                         tb.Text = Entity.BulkheadsRightA[serialNo].Beads[i].SerialNo.ToString();
                         tb.DataBindings.Add("Text", Entity.BulkheadsRightA[serialNo].Beads[i], "SerialNo");
+                        tb2.Text = Entity.BulkheadsRightA[serialNo].Beads[i].JobNo.ToString();
+                        tb2.DataBindings.Add("Text", Entity.BulkheadsRightA[serialNo].Beads[i], "JobNo");
                     }
                 }
-                tableLayoutPanel1.Controls.Add(tb);
-            }
-            //JOB号
-            for (int i = 0; i < 40; i++)
-            {
-                TextBox tb = new TextBox();
-                tb.Name = "txtJobNo" + (i + 1).ToString();
-                tb.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                //非初始化加载时进行数据绑定
-                if (bulkNo > 0)
-                {
-                    //数据绑定
-                    if (robot == Robot.Left)
-                    {
-                        tb.Text = Entity.BulkheadsLeftA[serialNo].Beads[i].JobNo.ToString();
-                        tb.DataBindings.Add("Text", Entity.BulkheadsLeftA[serialNo].Beads[i], "JobNo");
-                    }
-                    else
-                    {
-                        tb.Text = Entity.BulkheadsRightA[serialNo].Beads[i].JobNo.ToString();
-                        tb.DataBindings.Add("Text", Entity.BulkheadsRightA[serialNo].Beads[i], "JobNo");
-                    }
-                }
-                tableLayoutPanel1.Controls.Add(tb);
             }
         }
         /// <summary>
         /// 动态生成焊缝信息
         /// </summary>
-        private void ShowBeadsB(int bulkNo, int rowNo, Robot robot)
+        private void BindBeadsB(int bulkNo, int rowNo, Robot robot)
         {
-            tableLayoutPanel1.Controls.Clear();
-            this.tableLayoutPanel1.Controls.Add(this.label33, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label34, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label35, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label36, 0, 3);
             int serialNo = rowNo;
-            //编号
+
             for (int i = 0; i < 40; i++)
             {
-                Label lb1 = new Label();
-                lb1.Text = (i + 1).ToString();
-                lb1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                tableLayoutPanel1.Controls.Add(lb1);
-            }
-            //是否焊接
-            for (int i = 0; i < 40; i++)
-            {
-                CheckBox cb = new CheckBox();
-                cb.Name = "cbIsWelding" + (i + 1).ToString();
-                cb.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+                CheckBox cb = tableLayoutPanel1.GetControlFromPosition(i+ 1, 1) as CheckBox;
+                TextBox tb = tableLayoutPanel1.GetControlFromPosition(i + 1, 2) as TextBox;
+                TextBox tb2 = tableLayoutPanel1.GetControlFromPosition(i+ 1, 3) as TextBox;
+                cb.DataBindings.Clear();
+                tb.DataBindings.Clear();
+                tb2.DataBindings.Clear();
                 //非初始化加载时进行数据绑定
                 if (bulkNo > 0)
                 {
@@ -192,60 +180,21 @@ namespace InteligentWelding
                     {
                         cb.Checked = Entity.BulkheadsLeftB[serialNo].Beads[i].IsWeld;
                         cb.DataBindings.Add("Checked", Entity.BulkheadsLeftB[serialNo].Beads[i], "IsWeld");
+                        tb.Text = Entity.BulkheadsLeftB[serialNo].Beads[i].SerialNo.ToString();
+                        tb.DataBindings.Add("Text", Entity.BulkheadsLeftB[serialNo].Beads[i], "SerialNo");
+                        tb2.Text = Entity.BulkheadsLeftB[serialNo].Beads[i].JobNo.ToString();
+                        tb2.DataBindings.Add("Text", Entity.BulkheadsLeftB[serialNo].Beads[i], "JobNo");
                     }
                     else
                     {
                         cb.Checked = Entity.BulkheadsRightB[serialNo].Beads[i].IsWeld;
                         cb.DataBindings.Add("Checked", Entity.BulkheadsRightB[serialNo].Beads[i], "IsWeld");
-                    }
-                }
-                tableLayoutPanel1.Controls.Add(cb);
-            }
-            //焊接顺序
-            for (int i = 0; i < 40; i++)
-            {
-                TextBox tb = new TextBox();
-                tb.Name = "txtSerialNo" + (i + 1).ToString();
-                tb.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                //非初始化加载时进行数据绑定
-                if (bulkNo > 0)
-                {
-                    //数据绑定
-                    if (robot == Robot.Left)
-                    {
-                        tb.Text = Entity.BulkheadsLeftB[serialNo].Beads[i].SerialNo.ToString();
-                        tb.DataBindings.Add("Text", Entity.BulkheadsLeftB[serialNo].Beads[i], "SerialNo");
-                    }
-                    else
-                    {
                         tb.Text = Entity.BulkheadsRightB[serialNo].Beads[i].SerialNo.ToString();
                         tb.DataBindings.Add("Text", Entity.BulkheadsRightB[serialNo].Beads[i], "SerialNo");
+                        tb2.Text = Entity.BulkheadsRightB[serialNo].Beads[i].JobNo.ToString();
+                        tb2.DataBindings.Add("Text", Entity.BulkheadsRightB[serialNo].Beads[i], "JobNo");
                     }
                 }
-                tableLayoutPanel1.Controls.Add(tb);
-            }
-            //JOB号
-            for (int i = 0; i < 40; i++)
-            {
-                TextBox tb = new TextBox();
-                tb.Name = "txtJobNo" + (i + 1).ToString();
-                tb.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                //非初始化加载时进行数据绑定
-                if (bulkNo > 0)
-                {
-                    //数据绑定
-                    if (robot == Robot.Left)
-                    {
-                        tb.Text = Entity.BulkheadsLeftB[serialNo].Beads[i].JobNo.ToString();
-                        tb.DataBindings.Add("Text", Entity.BulkheadsLeftB[serialNo].Beads[i], "JobNo");
-                    }
-                    else
-                    {
-                        tb.Text = Entity.BulkheadsRightB[serialNo].Beads[i].JobNo.ToString();
-                        tb.DataBindings.Add("Text", Entity.BulkheadsRightB[serialNo].Beads[i], "JobNo");
-                    }
-                }
-                tableLayoutPanel1.Controls.Add(tb);
             }
         }
         /// <summary>
@@ -301,11 +250,17 @@ namespace InteligentWelding
             //初始化加载
             //ShowBeads(0, 0, Robot.Left);
             ShowBulkheads("A");
+            ShowBeads();
             ParasBind();
             //todo:状态展示
             picLeftState.Image = Properties.Resources.Image2;
             picRightState.Image = Properties.Resources.Image2;
             picPLCState.Image = Properties.Resources.Image2;
+
+
+            monitor.StartMonitor();
+            monitor.subscription.DataChanged += new Opc.Da.DataChangedEventHandler(this.OnMonitorChange);
+            monitor.Readall(ref PLCPara);
         }
 
         private void btImport_Click(object sender, EventArgs e)
@@ -351,7 +306,7 @@ namespace InteligentWelding
             }
             else
             {
-                ShowBeadsB(Entity.BulkheadsLeftB[index].BulkHeadNo, index, (Robot)Entity.BulkheadsLeftB[index].Robot);
+                BindBeadsB(Entity.BulkheadsLeftB[index].BulkHeadNo, index, (Robot)Entity.BulkheadsLeftB[index].Robot);
             }
         }
 
@@ -369,8 +324,95 @@ namespace InteligentWelding
             }
             else
             {
-                ShowBeadsB(Entity.BulkheadsRightB[index].BulkHeadNo, index, (Robot)Entity.BulkheadsRightB[index].Robot);
+                BindBeadsB(Entity.BulkheadsRightB[index].BulkHeadNo, index, (Robot)Entity.BulkheadsRightB[index].Robot);
             }
+        }
+        public void OnMonitorChange(object subscriptionHandle, object requestHandle, ItemValueResult[] values)
+        {
+            Type t1 = PLCPara.GetType();
+            foreach (ItemValueResult item in values)
+            {
+                string key = item.ItemName.Split('.')[2];
+                //利用反射将更改的值绑定到实体
+                t1.GetField(key).SetValue(PLCPara,item.Value);
+                //收到PLC请求信号
+                if (key == "Request")
+                {
+                    isRequest = Convert.ToBoolean(item.Value);
+                }
+            }
+            if (isRequest && isReady)
+            {
+                SendBulkheadInfo();
+            }
+
+        }
+        public void SendBulkheadInfo()
+        {
+            if (PLCPara.Request)
+            {
+                int RequestSource = PLCPara.RequestSource;//机器人选择
+                int RequestSerial = PLCPara.RequestSerial;//隔板顺序
+                Type tUpper = upperPara.GetType();
+                var paraList = new object();
+                var bulkHead = new object();
+                if (Entity.Type != "B")
+                {
+                    paraList = Entity.BulkheadParaA;
+                    //遍历隔板中的所有属性赋值给待传参数
+                    if (RequestSource == (int)Robot.Left)
+                    {
+                        bulkHead = Entity.BulkheadsLeftA[RequestSerial];
+
+                    }
+                    else
+                    {
+                        bulkHead = Entity.BulkheadsRightA;
+                    }
+                }
+                else
+                {
+                    paraList = Entity.BulkheadParaB;
+                    if (RequestSource == (int)Robot.Left)
+                    {
+                        bulkHead = Entity.BulkheadsLeftB;
+                    }
+                    else
+                    {
+                        bulkHead = Entity.BulkheadsRightB;
+                    }
+                }
+                //遍历PARA中的所有属性赋值给待传参数
+                Type tPara = paraList.GetType();
+                foreach (var propertity in tPara.GetProperties())
+                {
+                    tUpper.GetField(propertity.Name).SetValue(upperPara, Opc.Convert.ChangeType(propertity.GetValue(paraList), tUpper.GetField(propertity.Name).FieldType));
+                }
+                Type tBulkHead = bulkHead.GetType();
+                //隔板属性
+                foreach (var propertity in tBulkHead.GetProperties())
+                {
+                    if (propertity.Name != "Beads")
+                    {
+                        tUpper.GetField(propertity.Name).SetValue(upperPara, Opc.Convert.ChangeType(propertity.GetValue(bulkHead), tUpper.GetField(propertity.Name).FieldType));
+                    }
+                }
+                //焊缝属性
+                List<Bead> beads = tBulkHead.GetProperty("Beads").GetValue(bulkHead) as List<Bead>;
+                for (int i = 0; i < beads.Count; i++)
+                {
+                    tUpper.GetField("IsWelding" + (i + 1)).SetValue(upperPara, Opc.Convert.ChangeType(beads[i].IsWeld, tUpper.GetField("IsWelding" + (i + 1)).FieldType));
+                    tUpper.GetField("SerialNo" + (i + 1)).SetValue(upperPara, Opc.Convert.ChangeType(beads[i].SerialNo, tUpper.GetField("SerialNo" + (i + 1)).FieldType));
+                    tUpper.GetField("JobNo" + (i + 1)).SetValue(upperPara, Opc.Convert.ChangeType(beads[i].JobNo, tUpper.GetField("JobNo" + (i + 1)).FieldType));
+                }
+                Opc.IdentifiedResult[] res= monitor.Write(upperPara);
+                isRequest = false;
+            }
+        }
+
+        private void btSend_Click(object sender, EventArgs e)
+        {
+            isReady = true;
         }
     }
 }

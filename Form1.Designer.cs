@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -121,8 +121,24 @@
             this.btSaveAs = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvRight = new System.Windows.Forms.DataGridView();
+            this.BulkheadNoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SerialNoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BulkheadSpaceR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsWeldingR = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IsSection1R = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IsSection2R = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IsSection3R = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.RobotR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvLeft = new System.Windows.Forms.DataGridView();
+            this.BulkheadNoL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SerialNoL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BulkheadSpaceL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsWeldingL = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IsSection1L = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IsSection2L = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.IsSection3L = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.RobotL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtWireType = new System.Windows.Forms.TextBox();
             this.txtBulkheadCount = new System.Windows.Forms.TextBox();
             this.txtType = new System.Windows.Forms.TextBox();
@@ -143,22 +159,6 @@
             this.picGirders = new System.Windows.Forms.PictureBox();
             this.btImport = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.BulkheadNoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SerialNoR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BulkheadSpaceR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsWeldingR = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IsSection1R = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IsSection2R = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IsSection3R = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.RobotR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BulkheadNoL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SerialNoL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BulkheadSpaceL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsWeldingL = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IsSection1L = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IsSection2L = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IsSection3L = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.RobotL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -193,17 +193,17 @@
             // 
             // chart1
             // 
-            chartArea14.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea14);
-            legend14.Name = "Legend1";
-            this.chart1.Legends.Add(legend14);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(385, 109);
             this.chart1.Margin = new System.Windows.Forms.Padding(2);
             this.chart1.Name = "chart1";
-            series14.ChartArea = "ChartArea1";
-            series14.Legend = "Legend1";
-            series14.Name = "Series1";
-            this.chart1.Series.Add(series14);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(300, 300);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -1133,6 +1133,7 @@
             this.btSend.TabIndex = 10;
             this.btSend.Text = "发送";
             this.btSend.UseVisualStyleBackColor = true;
+            this.btSend.Click += new System.EventHandler(this.btSend_Click);
             // 
             // btSaveAs
             // 
@@ -1182,6 +1183,67 @@
             this.dgvRight.TabIndex = 24;
             this.dgvRight.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRight_CellClick);
             // 
+            // BulkheadNoR
+            // 
+            this.BulkheadNoR.DataPropertyName = "BulkheadNo";
+            this.BulkheadNoR.HeaderText = "格挡编号";
+            this.BulkheadNoR.Name = "BulkheadNoR";
+            this.BulkheadNoR.ReadOnly = true;
+            this.BulkheadNoR.Width = 70;
+            // 
+            // SerialNoR
+            // 
+            this.SerialNoR.DataPropertyName = "SerialNo";
+            this.SerialNoR.HeaderText = "焊接顺序";
+            this.SerialNoR.Name = "SerialNoR";
+            this.SerialNoR.Width = 70;
+            // 
+            // BulkheadSpaceR
+            // 
+            this.BulkheadSpaceR.DataPropertyName = "BulkheadSpace";
+            this.BulkheadSpaceR.HeaderText = "隔板间距";
+            this.BulkheadSpaceR.Name = "BulkheadSpaceR";
+            this.BulkheadSpaceR.Width = 70;
+            // 
+            // IsWeldingR
+            // 
+            this.IsWeldingR.DataPropertyName = "IsWelding";
+            this.IsWeldingR.HeaderText = "是否焊接";
+            this.IsWeldingR.Name = "IsWeldingR";
+            this.IsWeldingR.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsWeldingR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsWeldingR.Width = 55;
+            // 
+            // IsSection1R
+            // 
+            this.IsSection1R.DataPropertyName = "IsSection1";
+            this.IsSection1R.HeaderText = "区域1是否进入";
+            this.IsSection1R.Name = "IsSection1R";
+            this.IsSection1R.Width = 55;
+            // 
+            // IsSection2R
+            // 
+            this.IsSection2R.DataPropertyName = "IsSection2";
+            this.IsSection2R.HeaderText = "区域2是否进入";
+            this.IsSection2R.Name = "IsSection2R";
+            this.IsSection2R.Width = 55;
+            // 
+            // IsSection3R
+            // 
+            this.IsSection3R.DataPropertyName = "IsSection3";
+            this.IsSection3R.HeaderText = "区域3是否进入";
+            this.IsSection3R.Name = "IsSection3R";
+            this.IsSection3R.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsSection3R.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsSection3R.Width = 55;
+            // 
+            // RobotR
+            // 
+            this.RobotR.DataPropertyName = "Robot";
+            this.RobotR.HeaderText = "机器人选择";
+            this.RobotR.Name = "RobotR";
+            this.RobotR.Visible = false;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvLeft);
@@ -1218,6 +1280,65 @@
             this.dgvLeft.Size = new System.Drawing.Size(545, 241);
             this.dgvLeft.TabIndex = 23;
             this.dgvLeft.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLeft_CellClick);
+            // 
+            // BulkheadNoL
+            // 
+            this.BulkheadNoL.DataPropertyName = "BulkHeadNo";
+            this.BulkheadNoL.HeaderText = "格挡编号";
+            this.BulkheadNoL.Name = "BulkheadNoL";
+            this.BulkheadNoL.ReadOnly = true;
+            this.BulkheadNoL.Width = 70;
+            // 
+            // SerialNoL
+            // 
+            this.SerialNoL.DataPropertyName = "SerialNo";
+            this.SerialNoL.HeaderText = "焊接顺序";
+            this.SerialNoL.Name = "SerialNoL";
+            this.SerialNoL.Width = 70;
+            // 
+            // BulkheadSpaceL
+            // 
+            this.BulkheadSpaceL.DataPropertyName = "BulkheadSpace";
+            this.BulkheadSpaceL.HeaderText = "隔板间距";
+            this.BulkheadSpaceL.Name = "BulkheadSpaceL";
+            this.BulkheadSpaceL.Width = 70;
+            // 
+            // IsWeldingL
+            // 
+            this.IsWeldingL.DataPropertyName = "IsWelding";
+            this.IsWeldingL.HeaderText = "是否焊接";
+            this.IsWeldingL.Name = "IsWeldingL";
+            this.IsWeldingL.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsWeldingL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsWeldingL.Width = 55;
+            // 
+            // IsSection1L
+            // 
+            this.IsSection1L.DataPropertyName = "IsSection1";
+            this.IsSection1L.HeaderText = "区域1是否进入";
+            this.IsSection1L.Name = "IsSection1L";
+            this.IsSection1L.Width = 55;
+            // 
+            // IsSection2L
+            // 
+            this.IsSection2L.DataPropertyName = "IsSection2";
+            this.IsSection2L.HeaderText = "区域2是否进入";
+            this.IsSection2L.Name = "IsSection2L";
+            this.IsSection2L.Width = 55;
+            // 
+            // IsSection3L
+            // 
+            this.IsSection3L.DataPropertyName = "IsSection3";
+            this.IsSection3L.HeaderText = "区域3是否进入";
+            this.IsSection3L.Name = "IsSection3L";
+            this.IsSection3L.Width = 55;
+            // 
+            // RobotL
+            // 
+            this.RobotL.DataPropertyName = "Robot";
+            this.RobotL.HeaderText = "机器人选择";
+            this.RobotL.Name = "RobotL";
+            this.RobotL.Visible = false;
             // 
             // txtWireType
             // 
@@ -1429,126 +1550,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1382, 954);
             this.tabControl1.TabIndex = 2;
-            // 
-            // BulkheadNoR
-            // 
-            this.BulkheadNoR.DataPropertyName = "BulkheadNo";
-            this.BulkheadNoR.HeaderText = "格挡编号";
-            this.BulkheadNoR.Name = "BulkheadNoR";
-            this.BulkheadNoR.ReadOnly = true;
-            this.BulkheadNoR.Width = 70;
-            // 
-            // SerialNoR
-            // 
-            this.SerialNoR.DataPropertyName = "SerialNo";
-            this.SerialNoR.HeaderText = "焊接顺序";
-            this.SerialNoR.Name = "SerialNoR";
-            this.SerialNoR.Width = 70;
-            // 
-            // BulkheadSpaceR
-            // 
-            this.BulkheadSpaceR.DataPropertyName = "BulkheadSpace";
-            this.BulkheadSpaceR.HeaderText = "隔板间距";
-            this.BulkheadSpaceR.Name = "BulkheadSpaceR";
-            this.BulkheadSpaceR.Width = 70;
-            // 
-            // IsWeldingR
-            // 
-            this.IsWeldingR.DataPropertyName = "IsWelding";
-            this.IsWeldingR.HeaderText = "是否焊接";
-            this.IsWeldingR.Name = "IsWeldingR";
-            this.IsWeldingR.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.IsWeldingR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.IsWeldingR.Width = 55;
-            // 
-            // IsSection1R
-            // 
-            this.IsSection1R.DataPropertyName = "IsSection1";
-            this.IsSection1R.HeaderText = "区域1是否进入";
-            this.IsSection1R.Name = "IsSection1R";
-            this.IsSection1R.Width = 55;
-            // 
-            // IsSection2R
-            // 
-            this.IsSection2R.DataPropertyName = "IsSection2";
-            this.IsSection2R.HeaderText = "区域2是否进入";
-            this.IsSection2R.Name = "IsSection2R";
-            this.IsSection2R.Width = 55;
-            // 
-            // IsSection3R
-            // 
-            this.IsSection3R.DataPropertyName = "IsSection3";
-            this.IsSection3R.HeaderText = "区域3是否进入";
-            this.IsSection3R.Name = "IsSection3R";
-            this.IsSection3R.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.IsSection3R.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.IsSection3R.Width = 55;
-            // 
-            // RobotR
-            // 
-            this.RobotR.DataPropertyName = "Robot";
-            this.RobotR.HeaderText = "机器人选择";
-            this.RobotR.Name = "RobotR";
-            this.RobotR.Visible = false;
-            // 
-            // BulkheadNoL
-            // 
-            this.BulkheadNoL.DataPropertyName = "BulkHeadNo";
-            this.BulkheadNoL.HeaderText = "格挡编号";
-            this.BulkheadNoL.Name = "BulkheadNoL";
-            this.BulkheadNoL.ReadOnly = true;
-            this.BulkheadNoL.Width = 70;
-            // 
-            // SerialNoL
-            // 
-            this.SerialNoL.DataPropertyName = "SerialNo";
-            this.SerialNoL.HeaderText = "焊接顺序";
-            this.SerialNoL.Name = "SerialNoL";
-            this.SerialNoL.Width = 70;
-            // 
-            // BulkheadSpaceL
-            // 
-            this.BulkheadSpaceL.DataPropertyName = "BulkheadSpace";
-            this.BulkheadSpaceL.HeaderText = "隔板间距";
-            this.BulkheadSpaceL.Name = "BulkheadSpaceL";
-            this.BulkheadSpaceL.Width = 70;
-            // 
-            // IsWeldingL
-            // 
-            this.IsWeldingL.DataPropertyName = "IsWelding";
-            this.IsWeldingL.HeaderText = "是否焊接";
-            this.IsWeldingL.Name = "IsWeldingL";
-            this.IsWeldingL.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.IsWeldingL.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.IsWeldingL.Width = 55;
-            // 
-            // IsSection1L
-            // 
-            this.IsSection1L.DataPropertyName = "IsSection1";
-            this.IsSection1L.HeaderText = "区域1是否进入";
-            this.IsSection1L.Name = "IsSection1L";
-            this.IsSection1L.Width = 55;
-            // 
-            // IsSection2L
-            // 
-            this.IsSection2L.DataPropertyName = "IsSection2";
-            this.IsSection2L.HeaderText = "区域2是否进入";
-            this.IsSection2L.Name = "IsSection2L";
-            this.IsSection2L.Width = 55;
-            // 
-            // IsSection3L
-            // 
-            this.IsSection3L.DataPropertyName = "IsSection3";
-            this.IsSection3L.HeaderText = "区域3是否进入";
-            this.IsSection3L.Name = "IsSection3L";
-            this.IsSection3L.Width = 55;
-            // 
-            // RobotL
-            // 
-            this.RobotL.DataPropertyName = "Robot";
-            this.RobotL.HeaderText = "机器人选择";
-            this.RobotL.Name = "RobotL";
-            this.RobotL.Visible = false;
             // 
             // Form1
             // 
