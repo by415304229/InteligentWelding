@@ -75,7 +75,7 @@ namespace InteligentWelding.Entity
         public bool IsSection3;
         public int Robot;
         public bool IsWelding1;
-        public string SerialNo1;
+        public byte SerialNo1;
         public string JobNo1;
         public bool IsWelding2;
         public string SerialNo2;

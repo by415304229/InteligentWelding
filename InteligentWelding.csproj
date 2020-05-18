@@ -82,6 +82,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessAdapter.cs" />
     <Compile Include="AccessHelper.cs" />
     <Compile Include="ChartHelper.cs" />
     <Compile Include="Entity\Bead.cs" />
@@ -127,6 +128,7 @@
     </Compile>
     <None Include="Template\TemplateB.xlsm" />
     <None Include="Template\TemplateA.xlsm" />
+    <None Include="Template\cache.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

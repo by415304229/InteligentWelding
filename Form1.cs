@@ -256,11 +256,14 @@ namespace InteligentWelding
             picLeftState.Image = Properties.Resources.Image2;
             picRightState.Image = Properties.Resources.Image2;
             picPLCState.Image = Properties.Resources.Image2;
-
-
             monitor.StartMonitor();
             monitor.subscription.DataChanged += new Opc.Da.DataChangedEventHandler(this.OnMonitorChange);
             monitor.Readall(ref PLCPara);
+            DialogResult res = MessageBox.Show("是否导入缓存中的项目","提示", MessageBoxButtons.YesNo);
+            if(res == DialogResult.Yes)
+            {
+                ExcelAdapter.GetGirdersFromExcel(Properties.Resources.cache, ref Entity);
+            }
         }
 
         private void btImport_Click(object sender, EventArgs e)
@@ -327,13 +330,19 @@ namespace InteligentWelding
                 BindBeadsB(Entity.BulkheadsRightB[index].BulkHeadNo, index, (Robot)Entity.BulkheadsRightB[index].Robot);
             }
         }
+        /// <summary>
+        /// 检测到OPC数据变化
+        /// </summary>
+        /// <param name="subscriptionHandle"></param>
+        /// <param name="requestHandle"></param>
+        /// <param name="values"></param>
         public void OnMonitorChange(object subscriptionHandle, object requestHandle, ItemValueResult[] values)
         {
             Type t1 = PLCPara.GetType();
             foreach (ItemValueResult item in values)
             {
                 string key = item.ItemName.Split('.')[2];
-                //利用反射将更改的值绑定到实体
+                //更新数据绑定
                 t1.GetField(key).SetValue(PLCPara,item.Value);
                 //收到PLC请求信号
                 if (key == "Request")
@@ -341,18 +350,22 @@ namespace InteligentWelding
                     isRequest = Convert.ToBoolean(item.Value);
                 }
             }
+            //发送数据
             if (isRequest && isReady)
             {
                 SendBulkheadInfo();
             }
 
         }
+        /// <summary>
+        /// 发送数据
+        /// </summary>
         public void SendBulkheadInfo()
         {
             if (PLCPara.Request)
             {
-                int RequestSource = PLCPara.RequestSource;//机器人选择
-                int RequestSerial = PLCPara.RequestSerial;//隔板顺序
+                int requestSource = PLCPara.RequestSource;//机器人选择
+                int requestSerial = PLCPara.RequestSerial;//隔板顺序
                 Type tUpper = upperPara.GetType();
                 var paraList = new object();
                 var bulkHead = new object();
@@ -360,9 +373,9 @@ namespace InteligentWelding
                 {
                     paraList = Entity.BulkheadParaA;
                     //遍历隔板中的所有属性赋值给待传参数
-                    if (RequestSource == (int)Robot.Left)
+                    if (requestSource == (int)Robot.Left)
                     {
-                        bulkHead = Entity.BulkheadsLeftA[RequestSerial];
+                        bulkHead = Entity.BulkheadsLeftA[requestSerial];
 
                     }
                     else
@@ -373,7 +386,7 @@ namespace InteligentWelding
                 else
                 {
                     paraList = Entity.BulkheadParaB;
-                    if (RequestSource == (int)Robot.Left)
+                    if (requestSource == (int)Robot.Left)
                     {
                         bulkHead = Entity.BulkheadsLeftB;
                     }
@@ -405,7 +418,15 @@ namespace InteligentWelding
                     tUpper.GetField("SerialNo" + (i + 1)).SetValue(upperPara, Opc.Convert.ChangeType(beads[i].SerialNo, tUpper.GetField("SerialNo" + (i + 1)).FieldType));
                     tUpper.GetField("JobNo" + (i + 1)).SetValue(upperPara, Opc.Convert.ChangeType(beads[i].JobNo, tUpper.GetField("JobNo" + (i + 1)).FieldType));
                 }
-                Opc.IdentifiedResult[] res= monitor.Write(upperPara);
+                //写完成新号
+                upperPara.WriteFinish = true;
+                //写入数据
+                if (!monitor.Write(upperPara))
+                {
+                    MessageBox.Show("写入环节失败，请检查OPC状态");
+                    lbMessage.Text = "写入" + (requestSource == 1 ? "左":"右") + "侧第" + requestSerial.ToString() + "个隔板失败";
+                }
+                lbMessage.Text = "写入" + (requestSource == 1 ? "左" : "右") + "侧第" + requestSerial.ToString() + "个隔板成功,等待下一个请求";
                 isRequest = false;
             }
         }
@@ -413,6 +434,13 @@ namespace InteligentWelding
         private void btSend_Click(object sender, EventArgs e)
         {
             isReady = true;
+            lbMessage.Text = "已准备就绪，等待PLC发送请求";
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string cachePath = System.IO.Directory.GetCurrentDirectory() + @"\cache.xlsx";
+            ExcelAdapter.SaveGirdersAsNewFile(cachePath, Entity);
         }
     }
 }
