@@ -32,6 +32,7 @@ namespace InteligentWelding.Entity
         private bool _isSection3;
         private int _robot;
         private List<Bead> _beads;
+        public bool IsSend;
         /// <summary>
         /// 隔板编号
         /// </summary>

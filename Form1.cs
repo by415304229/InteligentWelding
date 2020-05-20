@@ -259,10 +259,10 @@ namespace InteligentWelding
             monitor.StartMonitor();
             monitor.subscription.DataChanged += new Opc.Da.DataChangedEventHandler(this.OnMonitorChange);
             monitor.Readall(ref PLCPara);
-            DialogResult res = MessageBox.Show("是否导入缓存中的项目","提示", MessageBoxButtons.YesNo);
+            DialogResult res = MessageBox.Show("是否打开上一次的项目","提示", MessageBoxButtons.YesNo);
             if(res == DialogResult.Yes)
             {
-                ExcelAdapter.GetGirdersFromExcel(Properties.Resources.cache, ref Entity);
+                ExcelAdapter.GetGirdersFromExcel(System.IO.Directory.GetCurrentDirectory() + @"\cache.xlsx", ref Entity);
             }
         }
 
@@ -366,9 +366,9 @@ namespace InteligentWelding
             {
                 int requestSource = PLCPara.RequestSource;//机器人选择
                 int requestSerial = PLCPara.RequestSerial;//隔板顺序
-                Type tUpper = upperPara.GetType();
                 var paraList = new object();
                 var bulkHead = new object();
+                Type tUpper = upperPara.GetType();
                 if (Entity.Type != "B")
                 {
                     paraList = Entity.BulkheadParaA;
@@ -380,7 +380,7 @@ namespace InteligentWelding
                     }
                     else
                     {
-                        bulkHead = Entity.BulkheadsRightA;
+                        bulkHead = Entity.BulkheadsRightA[requestSerial];
                     }
                 }
                 else
@@ -388,11 +388,11 @@ namespace InteligentWelding
                     paraList = Entity.BulkheadParaB;
                     if (requestSource == (int)Robot.Left)
                     {
-                        bulkHead = Entity.BulkheadsLeftB;
+                        bulkHead = Entity.BulkheadsLeftB[requestSerial];
                     }
                     else
                     {
-                        bulkHead = Entity.BulkheadsRightB;
+                        bulkHead = Entity.BulkheadsRightB[requestSerial];
                     }
                 }
                 //遍历PARA中的所有属性赋值给待传参数
@@ -427,7 +427,47 @@ namespace InteligentWelding
                     lbMessage.Text = "写入" + (requestSource == 1 ? "左":"右") + "侧第" + requestSerial.ToString() + "个隔板失败";
                 }
                 lbMessage.Text = "写入" + (requestSource == 1 ? "左" : "右") + "侧第" + requestSerial.ToString() + "个隔板成功,等待下一个请求";
+                tBulkHead.GetField("IsSend").SetValue(bulkHead, true);
                 isRequest = false;
+                //判断是否全部发送完成
+                int finishCount = 0;
+                int totalCount = 0;
+                foreach(var bulk in Entity.BulkheadsLeftA)
+                {
+                    totalCount++;
+                    if(bulk.IsSend)
+                    {
+                        finishCount++;
+                    }
+                }
+                foreach (var bulk in Entity.BulkheadsLeftB)
+                {
+                    totalCount++;
+                    if (bulk.IsSend)
+                    {
+                        finishCount++;
+                    }
+                }
+                foreach (var bulk in Entity.BulkheadsRightA)
+                {
+                    totalCount++;
+                    if (bulk.IsSend)
+                    {
+                        finishCount++;
+                    }
+                }
+                foreach (var bulk in Entity.BulkheadsRightB)
+                {
+                    totalCount++;
+                    if (bulk.IsSend)
+                    {
+                        finishCount++;
+                    }
+                }
+                if (totalCount == finishCount)
+                {
+                    lbMessage.Text = "全部隔板已经发送完毕";
+                }
             }
         }
 
@@ -439,7 +479,7 @@ namespace InteligentWelding
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string cachePath = System.IO.Directory.GetCurrentDirectory() + @"\cache.xlsx";
+            string cachePath = System.IO.Directory.GetCurrentDirectory() + @"\cache";
             ExcelAdapter.SaveGirdersAsNewFile(cachePath, Entity);
         }
     }

@@ -260,7 +260,11 @@ namespace InteligentWelding
                             }
                         }
                     }
-                    excelPackage.SaveAs(new FileInfo(filePath + ".xlsx"));
+                    FileStream fs = new FileStream(filePath + ".xlsm",FileMode.Create);
+                    excelPackage.SaveAs(fs);
+                    fs.Position = 0;
+                    fs.Close();
+                    
                 }
             }
             catch (IOException e)
