@@ -72,7 +72,7 @@ namespace InteligentWelding
             }
             catch (Exception e)
             {
-                MessageBox.Show(@"连接OPC服务器失败/n" + e.Message);
+                MessageBox.Show(@"连接OPC服务器失败");
             }
         }
         /// <summary>

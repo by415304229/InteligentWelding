@@ -28,18 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.components = new System.ComponentModel.Container();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.btError = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.dtPickerEndTime = new System.Windows.Forms.DateTimePicker();
+            this.btProduct = new System.Windows.Forms.Button();
+            this.dtPickerStartTime = new System.Windows.Forms.DateTimePicker();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.btBulkheadCount = new System.Windows.Forms.Button();
+            this.dtPickerBulkheadCount = new System.Windows.Forms.DateTimePicker();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BulkheadCountByDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeACount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeBCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.lblVRight = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.lblURight = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.lblIRight = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.lblVleft = new System.Windows.Forms.Label();
+            this.lblULeft = new System.Windows.Forms.Label();
+            this.lblILeft = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.lblPressure = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.lblRightTopServoState = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.lblMiddleTopServoState = new System.Windows.Forms.Label();
+            this.label72 = new System.Windows.Forms.Label();
+            this.lblLeftTopServoState = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.lblRightServoState = new System.Windows.Forms.Label();
+            this.lblLeftServoState = new System.Windows.Forms.Label();
+            this.label78 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.lblRightRobotState = new System.Windows.Forms.Label();
+            this.lblLeftRobotState = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblBulkheadCount = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.lblProductCount = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtWorkNo = new System.Windows.Forms.TextBox();
-            this.产品工号 = new System.Windows.Forms.Label();
+            this.lblWorkNo = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
@@ -159,10 +211,29 @@
             this.picGirders = new System.Windows.Forms.PictureBox();
             this.btImport = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BulkheadType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductWorkNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BUGTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BUGEquipment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.groupBox12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.groupBox11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelA.SuspendLayout();
@@ -181,7 +252,9 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.chart1);
+            this.tabPage4.Controls.Add(this.groupBox12);
+            this.tabPage4.Controls.Add(this.groupBox11);
+            this.tabPage4.Controls.Add(this.groupBox10);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage4.Name = "tabPage4";
@@ -191,26 +264,204 @@
             this.tabPage4.Text = "报表分析";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // chart1
+            // groupBox12
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(385, 109);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(300, 300);
-            this.chart1.TabIndex = 0;
-            this.chart1.Text = "chart1";
+            this.groupBox12.Controls.Add(this.btError);
+            this.groupBox12.Controls.Add(this.dataGridView3);
+            this.groupBox12.Location = new System.Drawing.Point(19, 427);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(651, 390);
+            this.groupBox12.TabIndex = 4;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "故障日志";
+            // 
+            // btError
+            // 
+            this.btError.Location = new System.Drawing.Point(558, 43);
+            this.btError.Name = "btError";
+            this.btError.Size = new System.Drawing.Size(75, 23);
+            this.btError.TabIndex = 2;
+            this.btError.Text = "查询";
+            this.btError.UseVisualStyleBackColor = true;
+            this.btError.Click += new System.EventHandler(this.btError_Click);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BUGTime,
+            this.BUGEquipment});
+            this.dataGridView3.Location = new System.Drawing.Point(6, 84);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.RowTemplate.Height = 27;
+            this.dataGridView3.Size = new System.Drawing.Size(639, 300);
+            this.dataGridView3.TabIndex = 1;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.label58);
+            this.groupBox11.Controls.Add(this.label57);
+            this.groupBox11.Controls.Add(this.dtPickerEndTime);
+            this.groupBox11.Controls.Add(this.btProduct);
+            this.groupBox11.Controls.Add(this.dtPickerStartTime);
+            this.groupBox11.Controls.Add(this.dataGridView2);
+            this.groupBox11.Location = new System.Drawing.Point(701, 18);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(643, 390);
+            this.groupBox11.TabIndex = 3;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "产品生产情况";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(282, 48);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(37, 15);
+            this.label58.TabIndex = 5;
+            this.label58.Text = "结束";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(20, 48);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(37, 15);
+            this.label57.TabIndex = 4;
+            this.label57.Text = "开始";
+            // 
+            // dtPickerEndTime
+            // 
+            this.dtPickerEndTime.Location = new System.Drawing.Point(328, 41);
+            this.dtPickerEndTime.Name = "dtPickerEndTime";
+            this.dtPickerEndTime.Size = new System.Drawing.Size(200, 25);
+            this.dtPickerEndTime.TabIndex = 3;
+            this.dtPickerEndTime.Value = new System.DateTime(2020, 6, 17, 0, 0, 0, 0);
+            // 
+            // btProduct
+            // 
+            this.btProduct.Location = new System.Drawing.Point(551, 40);
+            this.btProduct.Name = "btProduct";
+            this.btProduct.Size = new System.Drawing.Size(75, 23);
+            this.btProduct.TabIndex = 2;
+            this.btProduct.Text = "查询";
+            this.btProduct.UseVisualStyleBackColor = true;
+            this.btProduct.Click += new System.EventHandler(this.btProduct_Click);
+            // 
+            // dtPickerStartTime
+            // 
+            this.dtPickerStartTime.Location = new System.Drawing.Point(63, 41);
+            this.dtPickerStartTime.Name = "dtPickerStartTime";
+            this.dtPickerStartTime.Size = new System.Drawing.Size(200, 25);
+            this.dtPickerStartTime.TabIndex = 0;
+            this.dtPickerStartTime.Value = new System.DateTime(2020, 6, 17, 0, 0, 0, 0);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ProductName,
+            this.BulkheadType,
+            this.ProductWorkNo,
+            this.StartTime,
+            this.EndTime});
+            this.dataGridView2.Location = new System.Drawing.Point(6, 84);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowTemplate.Height = 27;
+            this.dataGridView2.Size = new System.Drawing.Size(631, 300);
+            this.dataGridView2.TabIndex = 1;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.label38);
+            this.groupBox10.Controls.Add(this.btBulkheadCount);
+            this.groupBox10.Controls.Add(this.dtPickerBulkheadCount);
+            this.groupBox10.Controls.Add(this.dataGridView1);
+            this.groupBox10.Location = new System.Drawing.Point(19, 18);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(651, 390);
+            this.groupBox10.TabIndex = 2;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "日生产格挡数量";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(27, 44);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(37, 15);
+            this.label38.TabIndex = 3;
+            this.label38.Text = "日期";
+            // 
+            // btBulkheadCount
+            // 
+            this.btBulkheadCount.Location = new System.Drawing.Point(558, 43);
+            this.btBulkheadCount.Name = "btBulkheadCount";
+            this.btBulkheadCount.Size = new System.Drawing.Size(75, 23);
+            this.btBulkheadCount.TabIndex = 2;
+            this.btBulkheadCount.Text = "查询";
+            this.btBulkheadCount.UseVisualStyleBackColor = true;
+            this.btBulkheadCount.Click += new System.EventHandler(this.btBulkheadCount_Click);
+            // 
+            // dtPickerBulkheadCount
+            // 
+            this.dtPickerBulkheadCount.Location = new System.Drawing.Point(79, 41);
+            this.dtPickerBulkheadCount.Name = "dtPickerBulkheadCount";
+            this.dtPickerBulkheadCount.Size = new System.Drawing.Size(200, 25);
+            this.dtPickerBulkheadCount.TabIndex = 0;
+            this.dtPickerBulkheadCount.Value = new System.DateTime(2020, 6, 22, 0, 0, 0, 0);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Date,
+            this.BulkheadCountByDate,
+            this.TypeACount,
+            this.TypeBCount});
+            this.dataGridView1.Location = new System.Drawing.Point(6, 84);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowTemplate.Height = 27;
+            this.dataGridView1.Size = new System.Drawing.Size(639, 300);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // Date
+            // 
+            this.Date.HeaderText = "日期";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            // 
+            // BulkheadCountByDate
+            // 
+            this.BulkheadCountByDate.HeaderText = "日生产格挡数量";
+            this.BulkheadCountByDate.Name = "BulkheadCountByDate";
+            this.BulkheadCountByDate.ReadOnly = true;
+            // 
+            // TypeACount
+            // 
+            this.TypeACount.HeaderText = "A类型数量";
+            this.TypeACount.Name = "TypeACount";
+            this.TypeACount.ReadOnly = true;
+            // 
+            // TypeBCount
+            // 
+            this.TypeBCount.HeaderText = "B类型数量";
+            this.TypeBCount.Name = "TypeBCount";
+            this.TypeBCount.ReadOnly = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.label1);
+            this.tabPage3.Controls.Add(this.groupBox8);
+            this.tabPage3.Controls.Add(this.groupBox7);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
@@ -220,20 +471,180 @@
             this.tabPage3.Text = "Scada监控";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.lblVRight);
+            this.groupBox8.Controls.Add(this.label67);
+            this.groupBox8.Controls.Add(this.lblURight);
+            this.groupBox8.Controls.Add(this.label66);
+            this.groupBox8.Controls.Add(this.lblIRight);
+            this.groupBox8.Controls.Add(this.label65);
+            this.groupBox8.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox8.Location = new System.Drawing.Point(712, 34);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox8.Size = new System.Drawing.Size(637, 372);
+            this.groupBox8.TabIndex = 2;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "右机器人";
+            // 
+            // lblVRight
+            // 
+            this.lblVRight.AutoSize = true;
+            this.lblVRight.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblVRight.Location = new System.Drawing.Point(405, 307);
+            this.lblVRight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVRight.Name = "lblVRight";
+            this.lblVRight.Size = new System.Drawing.Size(20, 20);
+            this.lblVRight.TabIndex = 11;
+            this.lblVRight.Text = "0";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label67.Location = new System.Drawing.Point(34, 55);
+            this.label67.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(167, 20);
+            this.label67.TabIndex = 6;
+            this.label67.Text = "焊接电流（A）：";
+            // 
+            // lblURight
+            // 
+            this.lblURight.AutoSize = true;
+            this.lblURight.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblURight.Location = new System.Drawing.Point(405, 181);
+            this.lblURight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblURight.Name = "lblURight";
+            this.lblURight.Size = new System.Drawing.Size(20, 20);
+            this.lblURight.TabIndex = 10;
+            this.lblURight.Text = "0";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label66.Location = new System.Drawing.Point(34, 181);
+            this.label66.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(167, 20);
+            this.label66.TabIndex = 7;
+            this.label66.Text = "焊接电压（V）：";
+            // 
+            // lblIRight
+            // 
+            this.lblIRight.AutoSize = true;
+            this.lblIRight.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblIRight.Location = new System.Drawing.Point(405, 55);
+            this.lblIRight.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblIRight.Name = "lblIRight";
+            this.lblIRight.Size = new System.Drawing.Size(20, 20);
+            this.lblIRight.TabIndex = 9;
+            this.lblIRight.Text = "0";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label65.Location = new System.Drawing.Point(34, 307);
+            this.label65.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(211, 20);
+            this.label65.TabIndex = 8;
+            this.label65.Text = "送丝速度（m/min）：";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.lblVleft);
+            this.groupBox7.Controls.Add(this.lblULeft);
+            this.groupBox7.Controls.Add(this.lblILeft);
+            this.groupBox7.Controls.Add(this.label37);
+            this.groupBox7.Controls.Add(this.label10);
+            this.groupBox7.Controls.Add(this.label1);
+            this.groupBox7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox7.Location = new System.Drawing.Point(34, 34);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox7.Size = new System.Drawing.Size(637, 372);
+            this.groupBox7.TabIndex = 1;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "左机器人";
+            // 
+            // lblVleft
+            // 
+            this.lblVleft.AutoSize = true;
+            this.lblVleft.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblVleft.Location = new System.Drawing.Point(371, 307);
+            this.lblVleft.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblVleft.Name = "lblVleft";
+            this.lblVleft.Size = new System.Drawing.Size(20, 20);
+            this.lblVleft.TabIndex = 5;
+            this.lblVleft.Text = "0";
+            // 
+            // lblULeft
+            // 
+            this.lblULeft.AutoSize = true;
+            this.lblULeft.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblULeft.Location = new System.Drawing.Point(371, 181);
+            this.lblULeft.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblULeft.Name = "lblULeft";
+            this.lblULeft.Size = new System.Drawing.Size(20, 20);
+            this.lblULeft.TabIndex = 4;
+            this.lblULeft.Text = "0";
+            // 
+            // lblILeft
+            // 
+            this.lblILeft.AutoSize = true;
+            this.lblILeft.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblILeft.Location = new System.Drawing.Point(371, 55);
+            this.lblILeft.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblILeft.Name = "lblILeft";
+            this.lblILeft.Size = new System.Drawing.Size(20, 20);
+            this.lblILeft.TabIndex = 3;
+            this.lblILeft.Text = "0";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label37.Location = new System.Drawing.Point(35, 307);
+            this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(211, 20);
+            this.label37.TabIndex = 2;
+            this.label37.Text = "送丝速度（m/min）：";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label10.Location = new System.Drawing.Point(35, 181);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(167, 20);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "焊接电压（V）：";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(54, 41);
+            this.label1.Location = new System.Drawing.Point(35, 55);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 20);
+            this.label1.Size = new System.Drawing.Size(167, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "焊丝速度： 100";
+            this.label1.Text = "焊接电流（A）：";
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.groupBox9);
+            this.tabPage2.Controls.Add(this.groupBox6);
+            this.tabPage2.Controls.Add(this.groupBox5);
+            this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
@@ -243,21 +654,298 @@
             this.tabPage2.Text = "设备OEE";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.label39);
+            this.groupBox9.Controls.Add(this.lblPressure);
+            this.groupBox9.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox9.Location = new System.Drawing.Point(676, 381);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox9.Size = new System.Drawing.Size(640, 462);
+            this.groupBox9.TabIndex = 20;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "其他状态";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label39.Location = new System.Drawing.Point(22, 214);
+            this.label39.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(156, 20);
+            this.label39.TabIndex = 6;
+            this.label39.Text = "气体压力状态：";
+            // 
+            // lblPressure
+            // 
+            this.lblPressure.AutoSize = true;
+            this.lblPressure.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblPressure.Location = new System.Drawing.Point(473, 214);
+            this.lblPressure.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPressure.Name = "lblPressure";
+            this.lblPressure.Size = new System.Drawing.Size(51, 20);
+            this.lblPressure.TabIndex = 9;
+            this.lblPressure.Text = "正常";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.label68);
+            this.groupBox6.Controls.Add(this.lblRightTopServoState);
+            this.groupBox6.Controls.Add(this.label70);
+            this.groupBox6.Controls.Add(this.lblMiddleTopServoState);
+            this.groupBox6.Controls.Add(this.label72);
+            this.groupBox6.Controls.Add(this.lblLeftTopServoState);
+            this.groupBox6.Controls.Add(this.label74);
+            this.groupBox6.Controls.Add(this.lblRightServoState);
+            this.groupBox6.Controls.Add(this.lblLeftServoState);
+            this.groupBox6.Controls.Add(this.label78);
+            this.groupBox6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox6.Location = new System.Drawing.Point(17, 381);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox6.Size = new System.Drawing.Size(640, 462);
+            this.groupBox6.TabIndex = 19;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "行走伺服运行情况";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label68.Location = new System.Drawing.Point(15, 313);
+            this.label68.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(240, 20);
+            this.label68.TabIndex = 1;
+            this.label68.Text = "中顶升伺服控制器状态：";
+            // 
+            // lblRightTopServoState
+            // 
+            this.lblRightTopServoState.AutoSize = true;
+            this.lblRightTopServoState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblRightTopServoState.Location = new System.Drawing.Point(466, 400);
+            this.lblRightTopServoState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRightTopServoState.Name = "lblRightTopServoState";
+            this.lblRightTopServoState.Size = new System.Drawing.Size(51, 20);
+            this.lblRightTopServoState.TabIndex = 16;
+            this.lblRightTopServoState.Text = "正常";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label70.Location = new System.Drawing.Point(15, 227);
+            this.label70.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(240, 20);
+            this.label70.TabIndex = 2;
+            this.label70.Text = "左顶升伺服控制器状态：";
+            // 
+            // lblMiddleTopServoState
+            // 
+            this.lblMiddleTopServoState.AutoSize = true;
+            this.lblMiddleTopServoState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblMiddleTopServoState.Location = new System.Drawing.Point(466, 313);
+            this.lblMiddleTopServoState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblMiddleTopServoState.Name = "lblMiddleTopServoState";
+            this.lblMiddleTopServoState.Size = new System.Drawing.Size(51, 20);
+            this.lblMiddleTopServoState.TabIndex = 15;
+            this.lblMiddleTopServoState.Text = "正常";
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label72.Location = new System.Drawing.Point(15, 140);
+            this.label72.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(240, 20);
+            this.label72.TabIndex = 3;
+            this.label72.Text = "右行走伺服控制器状态：";
+            // 
+            // lblLeftTopServoState
+            // 
+            this.lblLeftTopServoState.AutoSize = true;
+            this.lblLeftTopServoState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblLeftTopServoState.Location = new System.Drawing.Point(466, 227);
+            this.lblLeftTopServoState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLeftTopServoState.Name = "lblLeftTopServoState";
+            this.lblLeftTopServoState.Size = new System.Drawing.Size(51, 20);
+            this.lblLeftTopServoState.TabIndex = 14;
+            this.lblLeftTopServoState.Text = "正常";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label74.Location = new System.Drawing.Point(15, 53);
+            this.label74.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(240, 20);
+            this.label74.TabIndex = 4;
+            this.label74.Text = "左行走伺服控制器状态：";
+            // 
+            // lblRightServoState
+            // 
+            this.lblRightServoState.AutoSize = true;
+            this.lblRightServoState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblRightServoState.Location = new System.Drawing.Point(466, 140);
+            this.lblRightServoState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRightServoState.Name = "lblRightServoState";
+            this.lblRightServoState.Size = new System.Drawing.Size(51, 20);
+            this.lblRightServoState.TabIndex = 13;
+            this.lblRightServoState.Text = "正常";
+            // 
+            // lblLeftServoState
+            // 
+            this.lblLeftServoState.AutoSize = true;
+            this.lblLeftServoState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblLeftServoState.Location = new System.Drawing.Point(466, 53);
+            this.lblLeftServoState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLeftServoState.Name = "lblLeftServoState";
+            this.lblLeftServoState.Size = new System.Drawing.Size(51, 20);
+            this.lblLeftServoState.TabIndex = 12;
+            this.lblLeftServoState.Text = "正常";
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label78.Location = new System.Drawing.Point(15, 400);
+            this.label78.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(240, 20);
+            this.label78.TabIndex = 8;
+            this.label78.Text = "右顶升伺服控制器状态：";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.Controls.Add(this.label40);
+            this.groupBox5.Controls.Add(this.lblRightRobotState);
+            this.groupBox5.Controls.Add(this.lblLeftRobotState);
+            this.groupBox5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox5.Location = new System.Drawing.Point(676, 14);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox5.Size = new System.Drawing.Size(640, 361);
+            this.groupBox5.TabIndex = 18;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "机器人运行情况";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(50, 35);
+            this.label2.Location = new System.Drawing.Point(32, 96);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(209, 20);
+            this.label2.Size = new System.Drawing.Size(198, 20);
             this.label2.TabIndex = 0;
-            this.label2.Text = "设备运行情况： 正常";
+            this.label2.Text = "左焊接机器人状态：";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label40.Location = new System.Drawing.Point(32, 244);
+            this.label40.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(198, 20);
+            this.label40.TabIndex = 5;
+            this.label40.Text = "右焊接机器人状态：";
+            // 
+            // lblRightRobotState
+            // 
+            this.lblRightRobotState.AutoSize = true;
+            this.lblRightRobotState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblRightRobotState.Location = new System.Drawing.Point(482, 244);
+            this.lblRightRobotState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblRightRobotState.Name = "lblRightRobotState";
+            this.lblRightRobotState.Size = new System.Drawing.Size(51, 20);
+            this.lblRightRobotState.TabIndex = 11;
+            this.lblRightRobotState.Text = "正常";
+            // 
+            // lblLeftRobotState
+            // 
+            this.lblLeftRobotState.AutoSize = true;
+            this.lblLeftRobotState.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblLeftRobotState.Location = new System.Drawing.Point(482, 96);
+            this.lblLeftRobotState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLeftRobotState.Name = "lblLeftRobotState";
+            this.lblLeftRobotState.Size = new System.Drawing.Size(51, 20);
+            this.lblLeftRobotState.TabIndex = 10;
+            this.lblLeftRobotState.Text = "正常";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lblBulkheadCount);
+            this.groupBox4.Controls.Add(this.label55);
+            this.groupBox4.Controls.Add(this.label56);
+            this.groupBox4.Controls.Add(this.lblProductCount);
+            this.groupBox4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox4.Location = new System.Drawing.Point(17, 14);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox4.Size = new System.Drawing.Size(640, 361);
+            this.groupBox4.TabIndex = 17;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "产品加工情况";
+            // 
+            // lblBulkheadCount
+            // 
+            this.lblBulkheadCount.AutoSize = true;
+            this.lblBulkheadCount.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblBulkheadCount.Location = new System.Drawing.Point(466, 244);
+            this.lblBulkheadCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblBulkheadCount.Name = "lblBulkheadCount";
+            this.lblBulkheadCount.Size = new System.Drawing.Size(20, 20);
+            this.lblBulkheadCount.TabIndex = 10;
+            this.lblBulkheadCount.Text = "0";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label55.Location = new System.Drawing.Point(15, 96);
+            this.label55.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(198, 20);
+            this.label55.TabIndex = 6;
+            this.label55.Text = "今日加工产品数量：";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label56.Location = new System.Drawing.Point(15, 244);
+            this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(198, 20);
+            this.label56.TabIndex = 7;
+            this.label56.Text = "今日加工格挡数量：";
+            // 
+            // lblProductCount
+            // 
+            this.lblProductCount.AutoSize = true;
+            this.lblProductCount.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblProductCount.Location = new System.Drawing.Point(466, 96);
+            this.lblProductCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblProductCount.Name = "lblProductCount";
+            this.lblProductCount.Size = new System.Drawing.Size(20, 20);
+            this.lblProductCount.TabIndex = 9;
+            this.lblProductCount.Text = "0";
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.txtWorkNo);
-            this.tabPage1.Controls.Add(this.产品工号);
+            this.tabPage1.Controls.Add(this.lblWorkNo);
             this.tabPage1.Controls.Add(this.tableLayoutPanel1);
             this.tabPage1.Controls.Add(this.panelA);
             this.tabPage1.Controls.Add(this.panelB);
@@ -293,15 +981,15 @@
             this.txtWorkNo.Size = new System.Drawing.Size(162, 25);
             this.txtWorkNo.TabIndex = 102;
             // 
-            // 产品工号
+            // lblWorkNo
             // 
-            this.产品工号.AutoSize = true;
-            this.产品工号.Location = new System.Drawing.Point(235, 61);
-            this.产品工号.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.产品工号.Name = "产品工号";
-            this.产品工号.Size = new System.Drawing.Size(67, 15);
-            this.产品工号.TabIndex = 101;
-            this.产品工号.Text = "项目名称";
+            this.lblWorkNo.AutoSize = true;
+            this.lblWorkNo.Location = new System.Drawing.Point(235, 61);
+            this.lblWorkNo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblWorkNo.Name = "lblWorkNo";
+            this.lblWorkNo.Size = new System.Drawing.Size(67, 15);
+            this.lblWorkNo.TabIndex = 101;
+            this.lblWorkNo.Text = "产品工号";
             // 
             // tableLayoutPanel1
             // 
@@ -1550,25 +2238,100 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1382, 954);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseClick);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tag = "ReadTimer";
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "产品名称";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            // 
+            // BulkheadType
+            // 
+            this.BulkheadType.DataPropertyName = "BulkheadType";
+            this.BulkheadType.HeaderText = "隔板类型";
+            this.BulkheadType.Name = "BulkheadType";
+            this.BulkheadType.ReadOnly = true;
+            // 
+            // ProductWorkNo
+            // 
+            this.ProductWorkNo.DataPropertyName = "ProductWorkNo";
+            this.ProductWorkNo.HeaderText = "产品工号";
+            this.ProductWorkNo.Name = "ProductWorkNo";
+            this.ProductWorkNo.ReadOnly = true;
+            // 
+            // StartTime
+            // 
+            this.StartTime.DataPropertyName = "StartTime";
+            this.StartTime.HeaderText = "开始时间";
+            this.StartTime.Name = "StartTime";
+            this.StartTime.ReadOnly = true;
+            // 
+            // EndTime
+            // 
+            this.EndTime.DataPropertyName = "EndTime";
+            this.EndTime.HeaderText = "结束时间";
+            this.EndTime.Name = "EndTime";
+            this.EndTime.ReadOnly = true;
+            // 
+            // BUGTime
+            // 
+            this.BUGTime.DataPropertyName = "BUGTime";
+            this.BUGTime.HeaderText = "故障发生时间";
+            this.BUGTime.Name = "BUGTime";
+            this.BUGTime.ReadOnly = true;
+            // 
+            // BUGEquipment
+            // 
+            this.BUGEquipment.DataPropertyName = "BUGEquipment";
+            this.BUGEquipment.HeaderText = "故障设备";
+            this.BUGEquipment.Name = "BUGEquipment";
+            this.BUGEquipment.ReadOnly = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1382, 953);
+            this.ClientSize = new System.Drawing.Size(1382, 879);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "振华重工";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.groupBox12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -1595,7 +2358,6 @@
         #endregion
 
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -1705,7 +2467,7 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.TextBox txtWorkNo;
-        private System.Windows.Forms.Label 产品工号;
+        private System.Windows.Forms.Label lblWorkNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn BulkheadNoR;
         private System.Windows.Forms.DataGridViewTextBoxColumn SerialNoR;
         private System.Windows.Forms.DataGridViewTextBoxColumn BulkheadSpaceR;
@@ -1722,6 +2484,69 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsSection2L;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsSection3L;
         private System.Windows.Forms.DataGridViewTextBoxColumn RobotL;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label lblVRight;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Label lblURight;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label lblIRight;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label lblVleft;
+        private System.Windows.Forms.Label lblULeft;
+        private System.Windows.Forms.Label lblILeft;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label lblRightTopServoState;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label lblMiddleTopServoState;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.Label lblLeftTopServoState;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.Label lblRightServoState;
+        private System.Windows.Forms.Label lblLeftServoState;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label lblRightRobotState;
+        private System.Windows.Forms.Label lblLeftRobotState;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label lblBulkheadCount;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label lblProductCount;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label lblPressure;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.DateTimePicker dtPickerBulkheadCount;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BulkheadCountByDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TypeACount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TypeBCount;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Button btProduct;
+        private System.Windows.Forms.DateTimePicker dtPickerStartTime;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button btBulkheadCount;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.DateTimePicker dtPickerEndTime;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Button btError;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BUGTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BUGEquipment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BulkheadType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductWorkNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndTime;
     }
 }
 

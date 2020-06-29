@@ -262,7 +262,7 @@ namespace InteligentWelding
             DialogResult res = MessageBox.Show("是否打开上一次的项目","提示", MessageBoxButtons.YesNo);
             if(res == DialogResult.Yes)
             {
-                ExcelAdapter.GetGirdersFromExcel(System.IO.Directory.GetCurrentDirectory() + @"\cache.xlsx", ref Entity);
+                ExcelAdapter.GetGirdersFromExcel(System.IO.Directory.GetCurrentDirectory() + @"\cache.xlsm", ref Entity);
             }
         }
 
@@ -349,6 +349,10 @@ namespace InteligentWelding
                 {
                     isRequest = Convert.ToBoolean(item.Value);
                 }
+                if(key.EndsWith("State") && item.Value.ToString() == "2")
+                {
+                    AccessAdapter.ErrorLog(key);
+                }
             }
             //发送数据
             if (isRequest && isReady)
@@ -418,13 +422,16 @@ namespace InteligentWelding
                     tUpper.GetField("SerialNo" + (i + 1)).SetValue(upperPara, Opc.Convert.ChangeType(beads[i].SerialNo, tUpper.GetField("SerialNo" + (i + 1)).FieldType));
                     tUpper.GetField("JobNo" + (i + 1)).SetValue(upperPara, Opc.Convert.ChangeType(beads[i].JobNo, tUpper.GetField("JobNo" + (i + 1)).FieldType));
                 }
-                //写完成新号
+                //隔板记录
+                AccessAdapter.BulkheadRecord(Entity.WorkNo, Convert.ToInt16(tBulkHead.GetProperty("BulkHeadNo").GetValue(bulkHead)));
+                //写完成信号
                 upperPara.WriteFinish = true;
                 //写入数据
                 if (!monitor.Write(upperPara))
                 {
                     MessageBox.Show("写入环节失败，请检查OPC状态");
                     lbMessage.Text = "写入" + (requestSource == 1 ? "左":"右") + "侧第" + requestSerial.ToString() + "个隔板失败";
+                    return;
                 }
                 lbMessage.Text = "写入" + (requestSource == 1 ? "左" : "右") + "侧第" + requestSerial.ToString() + "个隔板成功,等待下一个请求";
                 tBulkHead.GetField("IsSend").SetValue(bulkHead, true);
@@ -467,6 +474,8 @@ namespace InteligentWelding
                 if (totalCount == finishCount)
                 {
                     lbMessage.Text = "全部隔板已经发送完毕";
+                    ///项目结束
+                    AccessAdapter.GirdEnd(Entity);
                 }
             }
         }
@@ -475,12 +484,128 @@ namespace InteligentWelding
         {
             isReady = true;
             lbMessage.Text = "已准备就绪，等待PLC发送请求";
+            monitor.Readall(ref PLCPara);
+            //项目开始
+            if(!string.IsNullOrEmpty(txtWorkNo.Text))
+            {
+                AccessAdapter.GirdStart(Entity);
+            }
+
+            //发送数据
+            if (isRequest && isReady)
+            {
+                SendBulkheadInfo();
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string cachePath = System.IO.Directory.GetCurrentDirectory() + @"\cache";
-            ExcelAdapter.SaveGirdersAsNewFile(cachePath, Entity);
+            if(txtWorkNo.Text.Length > 0)
+            {
+                string cachePath = System.IO.Directory.GetCurrentDirectory() + @"\cache";
+                ExcelAdapter.SaveGirdersAsNewFile(cachePath, Entity);
+            }
+        }
+        /// <summary>
+        /// 定时读取OPC数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                monitor.Readall(ref PLCPara);
+                lblLeftRobotState.Text = PLCPara.LeftRobotState.ToString() == ((int)RobotState.Normal).ToString() ? "正常" : "故障/暂停";
+                lblRightRobotState.Text = PLCPara.RightRobotState.ToString() == ((int)RobotState.Normal).ToString() ? "正常" : "故障/暂停";
+                lblLeftServoState.Text = PLCPara.LeftServoState.ToString() == ((int)RobotState.Normal).ToString() ? "正常" : "故障/暂停";
+                lblRightServoState.Text = PLCPara.RightServoState.ToString() == ((int)RobotState.Normal).ToString() ? "正常" : "故障/暂停";
+                lblLeftTopServoState.Text = PLCPara.LeftTopServoState.ToString() == ((int)RobotState.Normal).ToString() ? "正常" : "故障/暂停";
+                lblMiddleTopServoState.Text = PLCPara.MiddleTopServoState.ToString() == ((int)RobotState.Normal).ToString() ? "正常" : "故障/暂停";
+                lblRightTopServoState.Text = PLCPara.RightTopServoState.ToString() == ((int)RobotState.Normal).ToString() ? "正常" : "故障/暂停";
+                lblPressure.Text = PLCPara.Pressure == ((int)RobotState.Normal).ToString() ? "正常" : "故障/暂停";
+                lblILeft.Text = PLCPara.ILeft;
+                lblULeft.Text = PLCPara.Uleft;
+                lblVleft.Text = PLCPara.Vleft; 
+                lblIRight.Text = PLCPara.IRight;
+                lblURight.Text = PLCPara.URight;
+                lblVRight.Text = PLCPara.VRight;
+            }
+            catch
+            {
+                throw new Exception("读取OPC数据失败，请检查OPC服务状态");
+            }
+        }
+        /// <summary>
+        /// 点击OEE时查询完成数量
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabControl1_MouseClick(object sender, MouseEventArgs e)
+        {
+            lblProductCount.Text = AccessAdapter.GetGirderCountByDate(DateTime.Now.Date, DateTime.Now.Date.AddDays(1)).ToString();
+            lblBulkheadCount.Text = AccessAdapter.GetBulkheadCountByDate(DateTime.Now.Date, DateTime.Now.Date.AddDays(1)).ToString();
+        }
+        /// <summary>
+        /// 查询日生产格挡数量
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btBulkheadCount_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            DateTime selectDate = dtPickerBulkheadCount.Value;
+            DateTime startTime = selectDate.Date;
+            DateTime endTime = selectDate.Date.AddDays(1);
+            DataTable dt = AccessAdapter.GetBulkheadByDate(startTime, endTime);
+            if(dt.Rows.Count > 0)
+            {
+                int aCount = 0;
+                int bCount = 0;
+                foreach(DataRow dr in dt.Rows)
+                {
+                    if(dr["Type"].ToString().Equals("A"))
+                    {
+                        aCount = Convert.ToInt16(dr["BulkheadCount"]);
+                    }
+                    else if (dr["Type"].ToString().Equals("B"))
+                    {
+                        bCount = Convert.ToInt16(dr["BulkheadCount"]);
+                    }
+                }
+                DataGridViewRow dgvr = new DataGridViewRow();
+                foreach(DataGridViewColumn c in dataGridView1.Columns)
+                {
+                    dgvr.Cells.Add(c.CellTemplate.Clone() as DataGridViewCell);
+                }
+                dgvr.Cells[0].Value = startTime.ToShortDateString();
+                dgvr.Cells[1].Value = aCount + bCount;
+                dgvr.Cells[2].Value = aCount;
+                dgvr.Cells[3].Value = bCount;
+                dataGridView1.Rows.Add(dgvr);
+            }
+            else
+            {
+                MessageBox.Show("当天没有隔板生产信息");
+            }
+        }
+        /// <summary>
+        /// 生产情况查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btProduct_Click(object sender, EventArgs e)
+        {
+            DateTime startTime = dtPickerStartTime.Value.Date;
+            DateTime endTime = dtPickerEndTime.Value.Date;
+            DataTable dt = AccessAdapter.GetGirderByDate(startTime, endTime);
+            dataGridView2.DataSource = dt;
+        }
+
+        private void btError_Click(object sender, EventArgs e)
+        {
+            DataTable dt = AccessAdapter.GetErrorLog();
+            dataGridView3.DataSource = dt;
         }
     }
 }

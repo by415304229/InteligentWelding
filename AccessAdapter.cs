@@ -47,7 +47,7 @@ namespace InteligentWelding
             paras.Add(new OleDbParameter("name", girder.Name));
             paras.Add(new OleDbParameter("type", girder.Type));
             paras.Add(new OleDbParameter("workNo", girder.WorkNo));
-            paras.Add(new OleDbParameter("startTime", DateTime.Now));
+            paras.Add(new OleDbParameter("startTime", DateTime.Now.ToString()));
             AccessHelper.ExecuteNonQuery(command, paras.ToArray());
         }
         /// <summary>
@@ -59,34 +59,20 @@ namespace InteligentWelding
             string command = @"UPDATE Girders SET EndTime = @endtime WHERE workNo = @workNo";
             List<OleDbParameter> paras = new List<OleDbParameter>();
             paras.Add(new OleDbParameter("workNo", girder.WorkNo));
-            paras.Add(new OleDbParameter("endtime", DateTime.Now));
+            paras.Add(new OleDbParameter("endtime", DateTime.Now.ToString()));
             AccessHelper.ExecuteNonQuery(command, paras.ToArray());
         }
         /// <summary>
-        /// 项目完成时更新项目的结束时间
+        /// 隔板生产记录
         /// </summary>
         /// <param name="girder"></param>
-        public static void BulkheadRecord(string workNo,BulkheadA bulkhead)
+        public static void BulkheadRecord(string workNo,int bulkheadNo)
         {
-            string command = @"INSERT INTO BulkheadRecord (WorkNo,SerialNo,DateTime) VALUES (@workNo,@serialNo,@dateTime)";
+            string command = @"INSERT INTO BulkheadRecord (WorkNo,SerialNo,RecordDateTime) VALUES (@workNo,@serialNo,@dateTime)";
             List<OleDbParameter> paras = new List<OleDbParameter>();
             paras.Add(new OleDbParameter("workNo", workNo));
-            paras.Add(new OleDbParameter("serialNo", bulkhead.SerialNo));
-            paras.Add(new OleDbParameter("dateTime", DateTime.Now));
-            AccessHelper.ExecuteNonQuery(command, paras.ToArray());
-        }
-        /// <summary>
-        /// 记录格挡生产情况
-        /// </summary>
-        /// <param name="workNo"></param>
-        /// <param name="bulkhead"></param>
-        public static void BulkheadRecord(string workNo, BulkheadB bulkhead)
-        {
-            string command = @"INSERT INTO BulkheadRecord (WorkNo,SerialNo,DateTime) VALUES (@workNo,@serialNo,@dateTime)";
-            List<OleDbParameter> paras = new List<OleDbParameter>();
-            paras.Add(new OleDbParameter("workNo", workNo));
-            paras.Add(new OleDbParameter("serialNo", bulkhead.SerialNo));
-            paras.Add(new OleDbParameter("dateTime", DateTime.Now));
+            paras.Add(new OleDbParameter("serialNo", bulkheadNo));
+            paras.Add(new OleDbParameter("dateTime", DateTime.Now.ToString()));
             AccessHelper.ExecuteNonQuery(command, paras.ToArray());
         }
         /// <summary>
@@ -95,10 +81,10 @@ namespace InteligentWelding
         /// <param name="equipment"></param>
         public static void ErrorLog(string equipment)
         {
-            string command = @"INSERT INTO ErrorLog (Equipment,DateTime) VALUES (@equipment,@dateTime)";
+            string command = @"INSERT INTO ErrorLog (Equipment, ErrorDateTime) VALUES (@equipment,@dateTime)";
             List<OleDbParameter> paras = new List<OleDbParameter>();
             paras.Add(new OleDbParameter("equipment", equipment));
-            paras.Add(new OleDbParameter("dateTime", DateTime.Now));
+            paras.Add(new OleDbParameter("dateTime", DateTime.Now.ToString()));
             AccessHelper.ExecuteNonQuery(command, paras.ToArray());
         }
         /// <summary>
@@ -109,7 +95,7 @@ namespace InteligentWelding
         /// <returns></returns>
         public static int GetBulkheadCountByDate(DateTime startTime, DateTime endTime)
         {
-            string command = @"SELECT COUNT(1) FROM BulkheadRecord WHERE DateTime > @startTime AND DateTime < @endTime";
+            string command = @"SELECT COUNT(1) FROM BulkheadRecord WHERE RecordDateTime > @startTime AND RecordDateTime < @endTime";
             List<OleDbParameter> paras = new List<OleDbParameter>();
             paras.Add(new OleDbParameter("startTime", startTime));
             paras.Add(new OleDbParameter("endTime", endTime));
@@ -117,14 +103,18 @@ namespace InteligentWelding
             return Convert.ToInt32(ds.Tables[0].Rows[0][0]);
         }
         /// <summary>
-        /// 根据日期获取当天生产的格挡信息
+        /// 根据日期获取生产的格挡信息
         /// </summary>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
         /// <returns></returns>
         public static DataTable GetBulkheadByDate(DateTime startTime, DateTime endTime)
         {
-            string command = @"SELECT * FROM BulkheadRecord WHERE DateTime > @startTime AND DateTime < @endTime";
+            string command = @"SELECT b.Type,Count(b.Type) AS BulkheadCount
+FROM      (BulkheadRecord a INNER JOIN
+                   GirdersRecord b ON a.WorkNo = b.WorkNo)
+WHERE   a.[RecordDateTime] BETWEEN @startTime AND @endTime
+GROUP BY b.Type";
             List<OleDbParameter> paras = new List<OleDbParameter>();
             paras.Add(new OleDbParameter("startTime", startTime));
             paras.Add(new OleDbParameter("endTime", endTime));
@@ -154,7 +144,8 @@ namespace InteligentWelding
         /// <returns></returns>
         public static DataTable GetGirderByDate(DateTime startTime, DateTime endTime)
         {
-            string command = @"SELECT * FROM GirdersRecord WHERE StartTime > @startTime AND EndTime < @endTime";
+            string command = @"SELECT Name AS ProductName, Type AS BulkheadType, WorkNo AS ProductWorkNo, StartTime, EndTime
+ FROM GirdersRecord WHERE StartTime > @startTime AND EndTime < @endTime";
             List<OleDbParameter> paras = new List<OleDbParameter>();
             paras.Add(new OleDbParameter("startTime", startTime));
             paras.Add(new OleDbParameter("endTime", endTime));
@@ -163,7 +154,9 @@ namespace InteligentWelding
         }
         public static DataTable GetErrorLog()
         {
-            string query = @"SELECT * FROM ErrorLog";
+            string query = @"SELECT TOP 200 Equipment AS BUGEquipment,  ErrorDateTime AS BUGTime
+FROM ErrorLog
+ORDER BY ErrorDateTime DESC";
             return AccessHelper.ExecuteDataSet(query, null).Tables[0];
         }
         //public static void AddCache()
